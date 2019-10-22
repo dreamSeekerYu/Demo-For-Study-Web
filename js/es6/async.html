@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <script>
+      const a = 1; //基本类型没有额外的属性
+      const b = () => {};
+      const c = {
+        a: 1,
+        b() {}
+      };
+      const d=[]
+      console.log(a.nameb, b.name, c.a.name, c.b.name,c.name,d.name);
+      // 插入排序  原地算法  没有实现真正的乱序
+
+      // 实现数组的正真乱序  原地洗牌算法  推荐
+      let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+      const mathFN = arr => {
+        arr.forEach((item, index) => {
+          let i = ~~(Math.random() * (arr.length - 1));
+          [arr[index], arr[i]] = [arr[i], arr[index]];
+        });
+        return arr;
+      };
+      //   console.log(mathFN(arr));
+
+      // 非原地洗牌算法
+      const mathFN2 = arr => {
+        let arr1 = [];
+        while (arr.length) {
+          let index = ~~(Math.random() * arr.length);
+          arr1.push(arr.splice(index, 1)[0]);
+        }
+        return arr1;
+      };
+      console.log(mathFN2(arr));
+
+      // for 和 map forEach 便利数组有什么不同吗??
+
+      // 什么是单例模式？
+
+      //   用 try catch 封装一下 异步函数  之后就可以以同步的方式进行结果的直接使用
+      //   npm 之中有没有 专门用于处理 async await 的 loader 插件 ????
+      const trycatch = async (fn, ...arg) => {
+        try {
+          let res = await fn(...arg);
+          return [null, res];
+        } catch (error) {
+          return [error, null];
+        }
+      };
+
+      //   let [err,res]=await trycatch()
+
+      const resolve = () => Promise.resolve();
+      const fn = async () => {
+        let res = await resolve;
+      };
+      console.log(fn());
+    </script>
+  </body>
+</html>
